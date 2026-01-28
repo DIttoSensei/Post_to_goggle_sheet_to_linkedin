@@ -1,6 +1,7 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from pprint import pprint as pp
+from posts import POST_1, POST_2
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
@@ -11,8 +12,9 @@ data = sheet.get_all_records()
 counter = 1
 #pp(data)
 
-post = 'This is a test post from python script'
+post = """"""
 status = 'READY'
+counter = 1
 
 #insertRow = [post,status]
 #sheet.insert_row(insertRow,counter)
@@ -39,6 +41,15 @@ def main ():
 
 
 def post_to_sheet(row):
+    global counter
+    
+    if counter == 1:
+        post = POST_1
+        counter += 1
+    elif counter == 2:
+        post = POST_2
+        counter = 1
+
     insertRow = [post,status]
     sheet.insert_row(insertRow,row)
    

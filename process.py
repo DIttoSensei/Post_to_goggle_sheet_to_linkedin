@@ -19,3 +19,21 @@ def run_script(script_name):
 
 def main ():
     print ("=== LinkedIn Post Automation Started ===")
+
+    # write first post
+    run_script("ai_post_writter.py")
+    print ("First post written.")
+
+    # write second post
+    run_script("ai_post_writter.py")
+    print ("Second post written.")
+
+    # post to google sheet
+    run_script("post_to_sheet.py")
+    print ("Second post uploaded to Google Sheet.")
+
+    # Clear posts.py
+    run_script("clear_post.py")
+
+if __name__ == "__main__":
+    main()

@@ -3,6 +3,9 @@ from persona import PROMPT
 from posts import POST_1, POST_2
 from openai import OpenAI
 
+dummy_post = """"""
+current_post_1 = POST_1
+
 client = OpenAI(
     base_url="https://router.huggingface.co/v1",
     api_key=os.environ["HF_TOKEN"],
@@ -24,9 +27,10 @@ clean_text = completion.choices[0].message.content
 # Write to posts.py
 if POST_1 == "":
     with open('posts.py', 'w', encoding='utf-8') as f:
-        f.write(f'POST_1 = """{clean_text}"""')
+        f.write(f'POST_1 = """{clean_text}"""\n')
+        f.write(f'POST_2 = """{dummy_post}"""\n')
 else:
     with open('posts.py', 'w', encoding='utf-8') as f:
-        f.write(f'POST_2 = """{clean_text}"""')
-
-print(clean_text)
+        f.write(f'POST_1 = """{current_post_1}"""\n')
+        f.write(f'POST_2 = """{clean_text}"""\n')
+        
