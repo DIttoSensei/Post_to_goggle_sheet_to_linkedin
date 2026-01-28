@@ -1,4 +1,5 @@
 import os
+from persona import PROMPT
 from openai import OpenAI
 
 client = OpenAI(
@@ -11,9 +12,12 @@ completion = client.chat.completions.create(
     messages=[
         {
             "role": "user",
-            "content": "What is the capital of France?"
+            "content": PROMPT
         }
     ],
+    temperature=0.8,
 )
 
-print(completion.choices[0].message)
+clean_text = completion.choices[0].message.content
+
+print(clean_text)
