@@ -29,6 +29,9 @@ def main ():
             print ("No post found")
             print (f"Posting in cell...{row},{column}")
             post_to_sheet(row)
+            row += 1
+            print (f"Posting in cell...{row},{column}")
+            post_to_sheet(row)
             break
         else:
             row += 1
