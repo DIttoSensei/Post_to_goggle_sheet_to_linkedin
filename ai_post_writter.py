@@ -1,5 +1,6 @@
 import os
 from persona import PROMPT
+from posts import POST_1, POST_2
 from openai import OpenAI
 
 client = OpenAI(
@@ -19,5 +20,13 @@ completion = client.chat.completions.create(
 )
 
 clean_text = completion.choices[0].message.content
+
+# Write to posts.py
+if POST_1 == "":
+    with open('posts.py', 'w', encoding='utf-8') as f:
+        f.write(f'POST_1 = """{clean_text}"""')
+else:
+    with open('posts.py', 'w', encoding='utf-8') as f:
+        f.write(f'POST_2 = """{clean_text}"""')
 
 print(clean_text)
