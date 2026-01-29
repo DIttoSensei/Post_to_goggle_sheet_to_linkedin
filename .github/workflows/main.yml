@@ -26,4 +26,5 @@ jobs:
       - name: Run Main Script
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          GCP_CREDS: ${{ secrets.GCP_CREDS }}
         run: python process.py  # 🪄 FIXED: This is now inside the correct step
