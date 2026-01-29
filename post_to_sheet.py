@@ -1,10 +1,21 @@
+import os
+import json
+import sys
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from pprint import pprint as pp
 from posts import POST_1, POST_2
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
+if "GCP_CREDS" in os.environ:
+    # Running on GitHub
+    creds_dict = json.loads(os.environ["GCP_CREDS"])
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+else:
+    # Running on your PC
+    sys.exit(1)
+    creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+    
 client = gspread.authorize(creds)
 
 sheet = client.open("linkned post").sheet1   
