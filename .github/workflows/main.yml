@@ -26,4 +26,4 @@ jobs:
       - name: Run Main Script
         env:
           HF_TOKEN: ${{ secrets.HUGGING_FACE_API_KEY }}
-        run: python main.py  # 🪄 FIXED: This is now inside the correct step
+        run: python process.py  # 🪄 FIXED: This is now inside the correct step
